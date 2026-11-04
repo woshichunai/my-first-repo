@@ -1,6 +1,6 @@
-# QQ 私人助理：需求与落地方案
+# QQ 私人助理：长期需求与方案
 
-更新：2026-11-03。状态：需求与技术路线已核查，QQ 接入、推送、文件自动归档和排程尚未部署。
+> 本文件描述需求，不代表部署完成。当前状态见 [ROADMAP.md](ROADMAP.md)，操作见 [USER_GUIDE.md](USER_GUIDE.md)。
 
 ## 目标体验
 
@@ -81,5 +81,3 @@
 - 官方 Codex 非交互模式：https://learn.chatgpt.com/docs/non-interactive-mode
 - 官方 Codex 登录与计费边界：https://learn.chatgpt.com/docs/auth
 - Apple 日历订阅：https://support.apple.com/zh-cn/102301
-
-当前已完成的是需求确认、方案文档和原有本地收件箱。没有已创建的QQ机器人账号、Bark连接、真实提醒、课件仓库或常驻后台。

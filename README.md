@@ -39,8 +39,8 @@
 - 只有出现实际内容时才增加目录、工具或项目。
 - 本仓库公开：只放自己的学习总结；不上传密码、订阅链接、个人信息、同学聊天或未获授权的课程资料。
 
-## 第二大脑工具
+## 第二大脑：QQ 私人助理
 
-已新增 [Windows 本地收件箱](projects/second-brain/README.md)：保存通知、通过 GPT 整理为任务、查看截止日期、导出日历和备份。下载仓库后双击 `projects/second-brain/start.cmd`（需要 Python 3.10+）。
+[项目统一入口](projects/second-brain/README.md) · [使用指南](projects/second-brain/USER_GUIDE.md) · [能力边界](projects/second-brain/BOUNDARIES.md) · [迭代计划](projects/second-brain/ROADMAP.md)
 
-[当前状态与后续路线](projects/second-brain/ROADMAP.md) 区分已完成代码、未部署能力与现成项目选择，方便后续继续推进。
+2026-11-04，现有 Windows 电脑已通过 QQ 收件、任务提取、课件找回、手机通知及完成取消的第一条测试闭环。当前仍需 AstrBot 运行，OCR、开机恢复和手机排程尚未完成。GitHub 保存代码与脱敏文档，不托管私人数据或机器人运行。

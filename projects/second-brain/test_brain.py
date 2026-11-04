@@ -49,7 +49,7 @@ class BrainTests(unittest.TestCase):
         self.brain.calendar(path)
         self.assertNotIn(b'BEGIN:VEVENT', path.read_bytes())
         self.brain.export(self.home / 'backup.json')
-        backup = json.loads((self.home / 'backup.json').read_text())
+        backup = json.loads((self.home / 'backup.json').read_text(encoding='utf-8'))
         self.assertEqual(len(backup['inbox']), 1)
         self.assertEqual(len(backup['tasks']), 2)
         self.assertIn(self.source, self.brain.prompt())

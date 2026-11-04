@@ -1,0 +1,8 @@
+name: astrbot_plugin_secondbrain_probe
+display_name: 第二大脑收件验证
+desc: 仅本人 QQ 私聊的固定收件回执、受限附件下载和原件取回；不调用模型或创建提醒。
+version: 0.1.0
+author: woshichunai
+support_platforms:
+  - qq_official
+astrbot_version: ">=4.29.4,<4.30"

@@ -9,7 +9,9 @@ param([switch]$DownloadOnly)
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 
-if ($env:OS -ne 'Windows_NT') { throw 'Run this helper on Windows.' }
+if ([Environment]::OSVersion.Platform -ne [PlatformID]::Win32NT) {
+    throw 'Run this helper on Windows.'
+}
 if (-not $env:LOCALAPPDATA) { throw 'LOCALAPPDATA is unavailable.' }
 
 $machineArch = [Environment]::GetEnvironmentVariable('PROCESSOR_ARCHITECTURE', 'Machine')

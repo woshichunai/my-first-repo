@@ -1,38 +1,38 @@
-# Windows 本地试运行
+# Windows 部署与验证工具
 
-选择已确定：使用可持续开机的 Windows 电脑；先测试现有资源，再决定新增预算。本阶段不购买服务器、不充值模型API。
+本机已有 AstrBot 4.29.4 和已配置的 QQ 试用插件；不要重复安装、重新配对或覆盖账号配置。新电脑下载代码不会自动获得这些配置。日常使用看 [USER_GUIDE.md](../USER_GUIDE.md)，当前状态看 [ROADMAP.md](../ROADMAP.md)。
 
-这不是已经完成的QQ机器人。安装助手只准备并启动官方 AstrBot 安装包；接下来需要用户本人扫码登录，并由本机执行端继续接通AI处理和手机推送。
+## 工具与范围
 
-## 推荐入口
+| 文件 | 用途与限制 |
+| --- | --- |
+| setup-astrbot.ps1 | 官方固定版本安装包下载、SHA256 校验、普通安装界面；不配置 QQ、模型或手机 |
+| probe-codex.py | 现有 ChatGPT 订阅登录的受监督合成样例验证；不创建真实任务，调用使用现有订阅额度 |
+| bark_probe.py | 本机设备配置与独立三条通知测试；不是日常任务调度器 |
+| test_bark_probe.py | Windows 加密、取消、恢复、漏发合并等本地测试 |
 
-将上一级 [WINDOWS_LOCAL_TASK.md](../WINDOWS_LOCAL_TASK.md) 交给能执行本机命令的 Codex。它应先检查已有安装，保留现有配置，避免重复安装。
+实际 QQ 助理位于上级 astrbot_plugin_secondbrain_probe，部署和私密数据位置见 [MAINTENANCE.md](../MAINTENANCE.md)。当前提醒队列在 AstrBot 插件内运行，不能通过仅运行旧版 start.cmd 启动。
 
 ## 安装助手
 
-`setup-astrbot.ps1` 支持 Windows AMD64/ARM64，下载官方 `v4.29.4` 安装包并验证发布资产的 SHA256，再打开普通安装界面。不会静默设置QQ、开放公网端口或添加付费服务。下载失败时直接报错，不使用第三方镜像。若电脑已安装AstrBot，可跳过。
-
-由本机执行端在当前目录运行：
+仅在未安装时使用，在本目录运行：
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\setup-astrbot.ps1
 ```
 
-这里的 ExecutionPolicy 参数只影响该次 PowerShell 进程，不修改系统长期策略。电脑若有组织管理策略，应交由本机执行端按策略处理。
+只下载和校验时加 `-DownloadOnly`。ExecutionPolicy 只影响该进程。支持 AMD64/ARM64，固定官方 v4.29.4，无第三方镜像；已在本机 PowerShell 与 Windows PowerShell 5.1 验证下载/校验。
 
-只下载、不启动安装界面：
+下载目录为 `%LOCALAPPDATA%/SecondBrain/installers`。本机已安装并打开客户端，不代表该助手能自动完成所有账号配置。
 
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\setup-astrbot.ps1 -DownloadOnly
-```
+## 本机运行要求
 
-安装包保存在 `%LOCALAPPDATA%\SecondBrain\installers`。程序不会读取聊天、账号凭据、浏览器Cookie或现有数据目录。
+保持联网、不休眠，AstrBot 持续运行；管理端仅本机访问。不增加公网端口、服务器、订阅或另计费 API。Codex 登录由用户本人完成，不读取或打印 auth.json。Bark 地址只在本机配置，设备密钥按当前 Windows 用户加密。
 
-## 来源与核查边界
+本轮 QQ 与手机证据见 [VALIDATION.md](../VALIDATION.md)。开机启动与整机重启恢复尚未实测；安装校验不等于正式安全审计。
 
-- [官方桌面客户端说明](https://docs.astrbot.app/deploy/astrbot/desktop.html)
+## 来源
+
+- [AstrBot 桌面文档](https://docs.astrbot.app/deploy/astrbot/desktop.html)
 - [固定版本发布页](https://github.com/AstrBotDevs/AstrBot-desktop/releases/tag/v4.29.4)
-- AMD64 SHA256：`7c65c03a9d6ed838a4f3ece11f7a88e44a81d0cfcb92094d1ebe14941938e1a6`
-- ARM64 SHA256：`1da76d3fdaa980e57e89b32f9c532424707bb5cbbfda5b0ab571399b8fb781d3`
-
-2026-11-03 已核对发布资产、URL和摘要；脚本尚未在 Windows 执行。此脚本既不代表软件安全审计，也不代表安装已完成。
+- [原始 Windows 执行要求](../WINDOWS_LOCAL_TASK.md)
